@@ -1,0 +1,77 @@
+{% extends 'muban.html' %}
+{% load static %}
+{% block index %}
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <section style="background: url({% static 'img/search_1.png' %});width: 100%;margin-left: 0">
+        <div style="width: 100%; height: 230px;">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div style="position: relative;background-color: #fff;margin-top: 115px" class="rounded-pill">
+                        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;请输入关键词" style="width: 93%;height: 50px;border: none;outline: none" class="rounded-pill">
+                        <button style="position: absolute;border: none;outline: none;right: 8px;background:none;top: 7px" >
+                            <img src="{% static 'img/搜索.png' %}" style="width: 30px;margin-top: 2px;"  alt="搜搜图标">
+                        </button>
+                    </div>
+                </div>
+                <div class="col-3">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var url = decodeURI(location.search);
+
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+             var str = url.substr(1);
+             strs = str.split("&");
+         for (var i = 0; i < strs.length; i++) {
+             theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+         }
+     }
+        function fuzhi(s){
+            for (var i=0;i<20;i++){
+                a='<div class="shadow">';
+                a += '<div class="card" style="margin-top: 30px" >';
+                a += '<div class="card-body">';
+                a+='<div class="row">';
+                a+='<div class="col-2" style="margin-left: 13px">';
+                a+=' <img class="card-img-top" style="margin-top: 30px" src="{% static 'img/文件.png' %}" alt="文件">';
+                a+='</div>';
+                a+='<div class="col-9">';
+                a+='<a class="card-title" href="公司?name='+s[i].name+'" style="font-size: x-large; color: black;text-decoration:none"><strong>'+s[i].name+'<br/></strong></a>';
+                a+='<a>'+s[i].industry+'<br/><br/></a>';
+                a+='<p class="card-text">'+s[i].scope+'<br/><br/></p>';
+                a+='</div>';
+                a+='<div class="col-1"></div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                $("#feng").append(a);
+            }
+        }
+        $.ajax({
+            type:'GET',
+            url: 'result3',
+            dataType:'json',
+            data:{
+                industry:theRequest.kw
+            },
+            success:function (data){
+                fuzhi(data);
+            },
+            error:function (data){
+                alert(data.value+theRequest.kw+"aa");
+            }
+        })
+    </script>
+    <section>
+
+            <div id="feng">
+
+            </div>
+
+    </section>
+{% endblock %}

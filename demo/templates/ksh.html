@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>echart 测试 </title>
+  <!-- 引入 echarts.js -->
+  <script crossorigin="anonymous" integrity="sha512-41TNls7qBS/8rKqfgMho0blSRty2TgHbdHq1h8x248EseHj1ZfFPAbjWVBQssJtkXptUwaBLVC3F1W8he53bgw==" src="https://lib.baomitu.com/echarts/5.3.1/echarts.min.js"></script>
+  <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<dv-flyline-chart-enhanced :config="config" style="width:100%;height:100%;" />
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 1200px;height:400px;">
+
+</div>
+<script type="text/javascript">
+
+  var ROOT_PATH =
+          'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
+
+  var chartDom = document.getElementById('main');
+  var myChart = echarts.init(chartDom, 'dark');//设置为深色模式
+  var option;
+
+  myChart.showLoading();
+  $.ajax({
+    type:'GET',
+    url: 'ksh',
+    data:{
+    },
+    dataType:'json',
+    success:function (graph){
+        alert(graph)
+      myChart.hideLoading();
+      graph.nodes.forEach(function (node) {
+        node.label = {
+          show: node.symbolSize > 30  //每个节点标记
+        };
+      });
+      option = {//图像名称
+        title: {
+          text: '关系图',
+          subtext: 'Default layout',
+          top: 'bottom',
+          left: 'center'// 标注的位置
+        },
+        tooltip: {},
+        legend: [
+          {
+            // selectedMode: 'single',
+            data: graph.categories.map(function (a) {
+              return a.name;
+            })
+          }
+        ],
+        animationDuration: 5000,
+        animationEasingUpdate: 'quinticInOut',
+        series: [
+          {
+            name: 'Les Miserables',
+            type: 'graph',
+            layout: 'none',
+            data: graph.nodes,
+            links: graph.links,
+            categories: graph.categories,
+            roam: true,
+            label: {
+              position: 'right',
+              formatter: '{b}'
+            },
+            lineStyle: {
+              color: 'source',
+              curveness: 0.3
+            },
+            emphasis: {
+              focus: 'adjacency',
+              lineStyle: {
+                width: 10
+              }
+            }
+          }
+        ]
+      };
+      myChart.setOption(option);
+    },
+    error:function (data){
+      console.log(data+"erroe");
+    }
+  })
+  option && myChart.setOption(option);
+
+</script>
+</body>
+</html>

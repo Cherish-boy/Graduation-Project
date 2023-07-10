@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>登陆</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/my-login.css' %}">
+    <script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="{% static 'img/logo.jpg' %}">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">登录</h4>
+								<div class="form-group">
+									<label for="email">邮件地址</label>
+									<input id="email" type="email" class="form-control" name="email">
+								</div>
+								<div class="form-group">
+									<label for="password">密码</label>
+									<input id="password" type="password" class="form-control" name="password">
+								</div>
+								<div class="form-group no-margin">
+									<button onclick="signIn()" type="submit" class="btn btn-primary btn-block">
+										登录
+									</button>
+                                    <button onclick="register()" type="submit" class="btn btn-primary btn-block">
+										注册
+									</button>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/my-login.js' %}"></script>
+<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    function register(){
+        let url = "register";
+         window.location.href=url;
+    }
+    //设置 cookie
+     function setCookie(objName, objValue, objHours){//添加cookie
+         var str = objName + "=" + encodeURIComponent(objValue);
+         if (objHours > 0) {//为0时不设定过期时间，浏览器关闭时cookie自动消失
+             var date = new Date();
+             var ms = objHours * 3600 * 1000;
+             date.setTime(date.getTime() + ms);
+             str += "; expires=" + date.toUTCString();
+         }
+         document.cookie = str;
+
+     }
+     {#//获取 cookie#}
+     function getCookie(objName){
+         {#//多个cookie 保存的时候是以 ;空格  分开的#}
+         var arrStr = document.cookie.split("; ");
+         for (var i = 0; i < arrStr.length; i++) {
+             var temp = arrStr[i].split("=");
+             if (temp[0] == objName){
+                 return decodeURIComponent(temp[1]);
+             }else{
+                 return "";
+             }
+
+         }
+     }
+
+     //为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+     function delCookie(name){
+         var date = new Date();
+         date.setTime(date.getTime() - 10000);
+         document.cookie = name + "=a; expires=" + date.toUTCString();
+     }
+     {#if(getCookie("condition")){#}
+     {#    alert("您已登录");#}
+     {#    let url = "首页.html";#}
+     {#    window.location.href=url;#}
+     {#}#}
+     function signIn(){
+         var email = document.getElementById('email').value;
+         var password = document.getElementById('password').value
+         if(!email || !password){
+             alert("请完善具体信息");
+         }
+         else{
+             $.ajax({
+                 type:'GET',
+                 url: 'logins',
+                  data:{
+                     username:email,
+                     password:password
+                 },
+                 datatype:'json',
+                 success:function (data){
+                    {#alert(data[2]);#}
+                    if(data[2] == 0){
+                        alert("账号或密码错误，请重新登录")
+                    }
+                    else{
+                        let url = "首页.html";
+                        window.location.href=url;
+                    }
+
+                },
+                error:function (data){
+                 alert("您的账号密码错误");
+              }
+            })
+         }
+     }
+
+</script>
+</body>
+</html>

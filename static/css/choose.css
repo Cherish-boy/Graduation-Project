@@ -1,0 +1,138 @@
+/*choose*/
+.down{
+    color:rgba(32,140,225,0.8);
+}
+.choose {
+    position: relative;
+    padding-left: 10px;
+    color: #666666;
+    margin-top: 0.8%;
+}
+
+.choose p {
+    text-align: left;
+    cursor: pointer;
+}
+.choose span {
+    margin-left: 1%;
+}
+
+.choose hr {
+    width: 94%;
+    margin-left: 50px;
+    margin-left: 0px\0; /*兼容IE9-11边距*/
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 1px;
+    border: none;
+}
+
+.type {
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    padding: 0 20px 0 60px;
+}
+
+/*.type_content {*/
+/*margin-right: -50px;*/
+/*cursor: auto;*/
+/*}*/
+
+.type_name_more {
+    display: none;
+    margin-left: 19%;
+    margin-left: 15%\0; /*兼容IE9-11边距*/
+}
+
+.type_name_more_add {
+    display: block;
+}
+
+.type_name, .type_name1, .type_name2, .type_name3, .type_name4 {
+    flex-direction: column;
+}
+
+#brand_addr, #edition_ios {
+    position: relative;
+    margin-left: 50px;
+}
+
+#brand_addr {
+    position: relative;
+    margin-left: 78px;
+}
+
+#status_addr, #type_addr, #resolution_addr, #edition_addr {
+    position: relative;
+}
+
+#status_addr {
+    margin-left: 47px;
+}
+
+#resolution_addr {
+    margin-left: 65px;
+}
+
+.before_color {
+    background-color: white;
+    border-radius: 3px;
+    display: inline-block;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.add_color {
+    background-color: #5AA7FD;
+    border-radius: 3px;
+    display: inline-block;
+    height: 30px;
+    width: 80px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+.default_color {
+    background-color: #5AA7FD;
+    border-radius: 3px;
+    display: inline-block;
+    height: 30px;
+    color: white;
+    width: 80px;
+    text-align: center;
+    line-height: 30px;
+}
+/*more*/
+.more, .more2,.more1, .more3{
+    position: absolute;
+    right: 3%;
+    margin-top: -1.8%;
+    font-size: 12px;
+    color: rgba(32, 140, 225, 0.8);
+    cursor: pointer;
+}
+.back,.back1,.back2,.back3{
+    position: absolute;
+    right: 3%;
+    margin-top: -1.8%;
+    font-size: 12px;
+    color: rgba(32, 140, 225, 0.8);
+    display:none;
+    cursor: pointer;
+}
+
+.more_hidden, .more2_hidden, .more1_hidden,.more3_hidden {
+    display: none;
+}
+.main{
+    position: relative;
+    padding-left: 5%;
+    margin-top: 0.8%;
+}
+#choosedBrand,#choosedAndroidVersion,#choosedIosVersion,#choosedResolution{
+    margin-left: 9%;
+}

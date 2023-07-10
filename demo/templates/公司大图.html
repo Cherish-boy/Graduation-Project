@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<title>公司范围介绍</title>
+		<link rel="stylesheet" href={% static "css/bootstrap.min.css"%} />
+		<link rel="stylesheet" href={% static  "css/app.css"%} />
+	</head>
+	
+	<body class="bg05">
+		<header class="header">
+			<h3>企业信息展示</h3>
+		</header>
+		
+		<div class="wrapper">
+			<div class="container-fluid">
+				<div class="row fill-h">
+					<div class="col-lg-7 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-1">
+							<div class="xpanel no-bg">
+								<div class="fill-h" id="bar3D"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-2-3">
+							<div class="xpanel">
+								<div class="fill-h" id="globe3D"></div>
+							</div>
+						</div>
+						<div class="xpanel-wrapper xpanel-wrapper-1-3">
+							<div class="xpanel">
+								<div class="fill-h" id="bar2D"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src={% static "js/jquery-3.3.1.min.js"%}></script>
+		<script type="text/javascript" src={% static "js/echarts.js"%}></script>
+		<script type="text/javascript" src={% static "js/echarts-gl.min.js"%}></script>
+		<script type="text/javascript">
+			$(function() {
+				/******************* 3D柱形图 ******************/
+				//初始化echarts实例
+				const bar3D = echarts.init(document.getElementById("bar3D"));
+				//数据
+				const hours = ['山西省', '甘肃省', '安徽省', '云南省', '陕西省', '北京市', '重庆市',
+								'河北省', '辽宁省', '吉林省','黑龙江省','江苏省', '福建省',
+				        		'江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省',
+				        		'天津市', '四川省', '贵州省', '浙江省', '上海市'];
+				const days = ['房地产', ' 建筑业 ', '制造业', '批发零售业', '租赁和商务服务', '居民服务业', '住宿餐饮','其他'];
+				const data = [ //[hour, day, val]
+					[0,0,8640], [0,1,4730], [0,2,8260], [0,3,7070],
+					[0,4,5710], [0,5,5970], [0,6,1710], [0,7,10],
+					[0,8,0], [0,9,0], [0,10,0], [0,11,20],
+					[0,12,40], [0,13,10], [0,14,10], [0,15,30],
+					[0,16,40], [0,17,60], [0,18,40], [0,19,40],
+					[0,20,30], [0,21,30], [0,22,20], [0,23,50],
+					[1,0,10400],[1,1,240],[1,2,190],[1,3,1760],[1,4,130],[1,5,210],[1,6,8120],
+					[1,7,0],[1,8,0],[1,9,0],[1,10,10],[1,11,0],[1,12,20],
+					[1,13,10],[1,14,30],[1,15,40],[1,16,0],[1,17,0],[1,18,0],
+					[1,19,0],[1,20,10],[1,21,20],[1,22,20],[1,23,60],
+					[2,0,11390], [2,1,15320], [2,2,14730], [2,3,12740],
+					[2,4,8060], [2,5,1770], [2,6,4890], [2,7,10],
+					[2,8,0], [2,9,0], [2,10,30], [2,11,20],
+					[2,12,10],[2,13,90],[2,14,80],[2,15,100],[2,16,60],
+					[2,17,50],[2,18,50],[2,19,50],[2,20,70],[2,21,40],
+					[2,22,20],[2,23,40],
+					[3,0,37180],[3,1,1040],[3,2,4640],[3,3,6200],[3,4,810],[3,5,990],
+					[3,6,15620],[3,7,0],[3,8,10],[3,9,0],[3,10,50],[3,11,40],[3,12,70],
+					[3,13,140],[3,14,130],[3,15,120],[3,16,90],[3,17,50],[3,18,50],
+					[3,19,100],[3,20,60],[3,21,40],[3,22,40],[3,23,10],
+					[4,0,7670],[4,1,720],[4,2,1090],[4,3,810],[4,4,470],[4,5,4700],
+					[4,6,1110],[4,7,0],[4,8,0],[4,9,20],[4,10,40],[4,11,40],
+					[4,12,20],[4,13,40],[4,14,40],[4,15,140],[4,16,120],[4,17,10],
+					[4,18,80],[4,19,50],[4,20,30],[4,21,100],[4,22,30],[4,23,0],
+					[5,0,3770], [5,1,1210],[5,2,1110],[5,3,3760],[5,4,960],[5,5,1770],
+					[5,6,1650],[5,7,10],[5,8,20], [5,9,0],[5,10,40],[5,11,10],[5,12,50],
+					[5,13,100],[5,14,50],[5,15,70],[5,16,110],[5,17,60],[5,18,0],[5,19,50],
+					[5,20,30],[5,21,40],[5,22,20],[5,23,0],
+					[6,0,17640], [6,1,8060], [6,2,33510], [6,3,23430],
+					[6,4,26580], [6,5,8260], [6,6,7300], [6,7,10],
+					[6,8,0], [6,9,0], [6,10,0], [6,11,0],
+					[6,12,0], [6,13,60], [6,14,90], [6,15,110],
+					[6,16,60], [6,17,70], [6,18,80], [6,19,120],
+					[6,20,50], [6,21,50], [6,22,70], [6,23,20],
+					[7,0,59570],[7,1,29610],[7,2,29110],[7,3,59530],[7,4,29360],
+					[7,5,22280], [7,6,13990],[7,7,30],[7,8,40],[7,9,0],[7,10,100],[7,11,60],
+					[7,12,30],[7,13,140],[7,14,90],[7,15,90],[7,16,50],[7,17,20],
+					[7,18,120],[7,19,20],[7,20,110],[7,21,40],[7,22,30],[7,23,180]
+				];
+				const barOpt = {
+				    tooltip: {
+				    	formatter: function(params) {
+				    		let series = params.seriesName;
+				    		let val = params.value;
+				    		return series + '<br/>' + 
+				    			days[val[1]] + '<br/>' + 
+				    			hours[val[0]] +'<br/>值：' + val[2];
+				    	}
+				    },
+				    visualMap: {
+				        max: 3718,
+				        min: 0,
+				        calculable: true,
+				        inRange: {
+				            color: ['#50a3ba', '#eac736', '#d94e5d']
+				        },
+				        textStyle: {
+				            color: '#fff'
+				        }
+				    },
+				    grid3D: {
+				    	boxWidth: 200,
+				    	boxDepth: 80,
+				        viewControl: {
+				        	distance: 220, //视觉距离
+				            autoRotate: false //自动旋转
+				        },
+				        light: { //光照配置
+				            main: {
+				                intensity: 1.2,
+				                shadow: true
+				            },
+				            ambient: {
+				                intensity: 0.3
+				            }
+				        },
+				        axisLabel: {
+				        	textStyle: {
+				        		color: '#fff'
+				        	}
+				        },
+				        axisLine: {
+				        	lineStyle: {
+				        		color: '#fff',
+				        		width: 1
+				        	}
+				       	},
+				       	axisPointer: {
+				       		show: false
+				       	}
+				    },
+				    xAxis3D: {
+				        type: 'category',
+				       	name: '',
+				        data: hours
+				    },
+				    yAxis3D: {
+				        type: 'category',
+				        name: '',
+				        data: days
+				    },
+				    zAxis3D: {
+				        type: 'value',
+						name: ''				        
+				    },
+				    series: [{
+				        type: 'bar3D',
+				        name: 'Bar3D',
+				        data: data.map(function (item) {
+				            return {
+				                value: [item[1], item[0], item[2]]
+				            }
+				        }),
+				        shading: 'lambert',
+				        emphasis: {
+				            label: {
+				                textStyle: {
+				                    fontSize: 16,
+				                    color: '#900'
+				                }
+				            },
+				            itemStyle: {
+				                color: '#900'
+				            }
+				        }
+				    }]
+				};
+				//渲染图表
+				bar3D.setOption(barOpt);
+				
+				/****************** 3D地球 ********************/
+				//初始化echart实例
+				const globe3D = echarts.init(document.getElementById("globe3D"));
+				//配置项
+				const globeOpt = {
+				    globe: {
+				    	environment: '{% static 'img/bg09.jpg' %}', //环境贴图
+				        baseTexture: '{% static "img/globe.jpg"%}', //地球的纹理
+				        heightTexture: '{% static "img/globe.jpg"%}', //地图的高度纹理
+				        displacementScale: 0, //地球顶点位移的大小
+				        shading: 'realistic', //着色效果，真实感渲染
+				        realisticMaterial: { //真实感渲染配置
+				            roughness: 0.8 //材质的粗糙度
+				        },
+				        postEffect: { //后处理特效配置
+				            enable: true
+				        },
+				        light: { //光照设置
+				            main: { //场景主光源设置，在globe设置中就是太阳光
+				                intensity: 5, //主光源强度
+				                shadow: true //是否投影
+				            },
+				            ambientCubemap: { //使用纹理作为光源的环境光， 会为物体提供漫反射和高光反射
+				                texture: '{% static 'img/pisa.hdr'%}', //环境光贴图
+				                diffuseIntensity: 0.1 //漫反射强度
+				            }
+				        }
+				    }
+				};
+				//渲染图表
+				globe3D.setOption(globeOpt);
+				
+				/******************* 二维数据的3D展示 ******************/
+				//初始化echarts实例
+				const bar2D = echarts.init(document.getElementById("bar2D"));
+				const xData = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+				const yData = [''];
+				const data2 = [[0,0,5],[0,1,11],[0,2,3],[6,3,1],[6,4,2],[6,5,2],[6,6,6]];
+				const barOpt2 = {
+					visualMap: {
+				        show: false,
+				        max: 15,
+				        inRange: {
+				            color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+				        }
+				    },
+					grid3D: {
+						show: false,
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+				        boxWidth: 300,
+				        boxDepth: 20,
+				        light: {
+				            main: {
+				                intensity: 1.2,
+				                shadow: true
+				            },
+				            ambient: {
+				                intensity: 0.3
+				            }
+				        },
+				        viewControl:{
+				            alpha: 0,
+				            beta: 0
+				        }
+				    },
+				    xAxis3D: {
+				    	type: 'category',
+				        name: '',
+				        data: xData
+				    },
+				    yAxis3D: {
+				    	type: 'category',
+				        name: '',
+				        data: yData
+				    },
+				    zAxis3D: {
+				    	type: 'value',
+				        name: ''
+				    },
+				    series: [{
+				        type: 'bar3D',
+				        data: data2.map(function (item) {
+				            return {
+				                value: [item[1], item[0], item[2]],
+				            }
+				        }),
+				        shading: 'lambert',
+				        label: {
+				            textStyle: {
+				                fontSize: 16,
+				                borderWidth: 1
+				            }
+				        },
+				        emphasis: {
+				            label: {
+				                textStyle: {
+				                    fontSize: 20,
+				                }
+				            }
+				        }
+				    }]
+				}
+				//渲染图表
+				bar2D.setOption(barOpt2);
+				
+				/********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					bar3D.resize();
+					globe3D.resize();
+					bar2D.resize();
+				}
+			});
+		</script>
+	</body>
+</html>

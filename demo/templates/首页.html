@@ -1,0 +1,360 @@
+{% extends 'muban.html' %}
+{% load static %}
+{% block index %}
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <div  style="margin-top: 65px;">
+    <section style="background: url({% static 'img/gdb.jpg' %});width: 100%;margin-left: 0">
+        <div style="width: 100%; height: 300px;">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <h1 style="margin-top: 80px; color: white; font-family: 黑体,serif; text-align: center"><strong>面向企业的政策推荐系统</strong></h1>
+                    <div  style="margin-top: 20px;color: white">
+                        <span style="color: white; margin-left: 20px"><strong>查询类型:</strong></span>
+                        查政策<input type="radio" checked="checked" name="activity" value="查政策" >
+                        查企业<input type="radio"  name="activity" value="查企业" >
+                    </div>
+                    <div style="position: relative;background-color: #fff;margin-top: 20px" class="rounded-pill">
+                        <input type="text" id="inputKey" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;最多支持输入6个关键词，输入多个关键词时中间用空格隔开）" style="width: 93%;height: 50px;border: none;outline: none" class="rounded-pill">
+                        <button onclick="sousuo()" style="position: absolute;border: none;outline: none;right: 8px;background:none;top: 7px" >
+                            <img src="{% static 'img/搜索.png' %}" style="width: 30px;margin-top: 2px;"  alt="搜搜图标">
+                        </button>
+                        <script>
+                            function sousuo(){
+                                check();
+                            }
+
+                            function check(){
+                                var activity = document.getElementsByName("activity");
+                                if(activity[0].checked){
+                                    let inputEle = document.getElementById('inputKey');
+                                {#alert(inputEle.value)#}
+                                //js实现界面跳转
+                                    {#alert(activity[0].value)#}
+                                let url = "test2.html?kw="+inputEle.value;
+                                window.location.href=url;
+                                }
+                                if(activity[1].checked){
+                                    {#alert(activity[1].value)#}
+                                    let inputEle = document.getElementById('inputKey');
+                                {#alert(inputEle.value)#}
+                                //js实现界面跳转
+                                let url = "search.html?kw="+inputEle.value;
+                                window.location.href=url;
+                                }
+
+                        }
+                        </script>
+                    </div>
+                    <div  style="margin-top: 20px;color: white">
+                        <span style="color: white; margin-left: 20px"><strong>关键词:</strong></span>
+                        <a href="javascript:void(0);" onclick="skip1()" style="color: white;text-decoration: none"><strong>&nbsp;科技</strong></a>
+                        <a href="javascript:void(0);" onclick="skip2()" style="color: white;text-decoration: none"><strong>&nbsp;人文</strong></a>
+                        <a href="javascript:void(0);" onclick="skip3()" style="color: white;text-decoration: none"><strong>&nbsp;社科</strong></a>
+                        <a href="javascript:void(0);" onclick="skip4()" style="color: white;text-decoration: none"><strong>&nbsp;生物</strong></a>
+                        <a href="javascript:void(0);" onclick="skip5()" style="color: white;text-decoration: none"><strong>&nbsp;化学</strong></a>
+                        <a href="javascript:void(0);" onclick="skip6()" style="color: white;text-decoration: none"><strong>&nbsp;电子信息</strong></a>
+                    </div>
+                    <script>
+                        function skip1(){
+                            let url = "test2.html?kw=科技";
+                                window.location.href=url;
+                        }
+                        function skip2(){
+                            let url = "test2.html?kw=人文";
+                                window.location.href=url;
+                        }
+                        function skip3(){
+                            let url = "test2.html?kw=社科";
+                                window.location.href=url;
+                        }
+                        function skip4(){
+                            let url = "test2.html?kw=生物";
+                                window.location.href=url;
+                        }
+                        function skip5(){
+                            let url = "test2.html?kw=化学";
+                                window.location.href=url;
+                        }
+                        function skip6(){
+                            let url = "test2.html?kw=电子信息";
+                                window.location.href=url;
+                        }
+                    </script>
+                </div>
+                <div class="col-3" style="margin-top:200px;">
+                    <a class="btn btn-primary" href="公司大图.html" role="button">企业数据展示</a>
+                    <a class="btn btn-primary" href="政策大图.html" role="button">政策数据展示</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row" >
+            <div class="col-1"></div>
+                <div class="col-7" style="margin-top: 50px;margin-left: 30px">
+                <div>
+                    <a href="javascript:void(0);" onclick="f1()" style="text-decoration:none;margin-right: 30px"><strong>热门政策</strong></a>
+                    <a href="javascript:void(0);" onclick="f2()" style="text-decoration:none;margin-right: 30px"><strong>热门企业</strong></a>
+                    <a href="javascript:void(0);" onclick="f3()" style="text-decoration:none;margin-right: 30px" ><strong>最新政策</strong></a>
+                    <a href="javascript:void(0);" onclick="f4()" style="text-decoration:none;margin-right: 30px"><strong>最新企业</strong></a>
+                </div>
+                <div id="feng">
+
+<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        //用于在ajax更新后
+        function fuzhi(s){
+            $('#feng').empty();
+            for (var i=0;i<10;i++){
+                a='<div class="shadow">';
+                a += '<div class="card" style="margin-top: 30px" >';
+                a += '<div class="card-body">';
+                a+='<div class="row">';
+                a+='<div class="col-2" style="margin-left: 13px">';
+                a+=' <img class="card-img-top" style="margin-top: 30px" src="{% static 'img/公司头像.jfif' %}" alt="文件">';
+                a+='</div>';
+                a+='<div class="col-9">';
+                a+='<a class="card-title" href="公司?name='+s[i].name+'" style="font-size: x-large; color: black;text-decoration:none"><strong>'+s[i].name+'<br/></strong></a>';
+                a+='<a>'+s[i].industry+'<br/><br/></a>';
+                a+='<p class="card-text">'+s[i].scope+'<br/><br/></p>';
+                a+='</div>';
+                a+='<div class="col-1"></div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                $("#feng").append(a);
+            }
+        }
+        function fuzhi1(s){
+            $('#feng').empty();
+            for (var i=0;i<10;i++){
+                a='<div class="shadow">';
+                a += '<div class="card" style="margin-top: 30px" >';
+                a += '<div class="card-body">';
+                a+='<div class="row">';
+                a+='<div class="col-2" style="margin-left: 13px">';
+                a+=' <img class="card-img-top" style="margin-top: 30px" src="{% static 'img/R-C.jfif' %}" alt="文件">';
+                a+='</div>';
+                a+='<div class="col-9">';
+                a+='<a class="card-title" href="详细内容.html?policy='+s[i].title+'" style="font-size: x-large; color: black;text-decoration:none"><strong>'+s[i].title+'<br/></strong></a>';
+                a+='<a>'+s[i].release_source+'<br/><br/></a>';
+                a+='<p class="card-text">'+s[i].abstract+'<br/><br/></p>';
+                a+='</div>';
+                a+='<div class="col-1"></div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                a+='</div>';
+                $("#feng").append(a);
+            }
+        }
+        function f1(){
+              $.ajax({
+                 type:'GET',
+                 url: 'hotpolicy',
+                  data:{
+                 },
+                 dataType:'json',
+                 success:function (data){
+                    fuzhi1(data);
+                },
+                error:function (data){
+                 console.log(data+"erroe");
+              }
+            })
+        }
+        function f2(){
+              $.ajax({
+                 type:'GET',
+                 url: 'hotcompany',
+                  data:{
+                 },
+                 dataType:'json',
+                 success:function (data){
+                    fuzhi(data);
+                },
+                error:function (data){
+                 console.log(data+"erroe");
+              }
+            })
+        }
+        function f3(){
+              $.ajax({
+                 type:'GET',
+                 url: 'zuixin',
+                 dataType:'json',
+                 success:function (data){
+                    fuzhi1(data);
+                },
+                error:function (data){
+                 console.log(data+"erroe");
+              }
+            })
+        }
+        function f4(){
+              $.ajax({
+                 type:'GET',
+                 url: 'newcompany',
+                 dataType:'json',
+                 success:function (data){
+                    fuzhi(data);
+                },
+                error:function (data){
+                 console.log(data+"erroe");
+              }
+            })
+        }
+        f3();
+</script>
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: 100px;margin-left: 30px">
+                <div >
+                    <div class="shadow">
+                    <div class="card">
+                        <div class="card-header" style="background: none">
+                            <div class="row">
+                                <div class="col-1" style="margin-left: 20px">
+                                    <img src="{% static 'img/推荐政策.png' %}" alt="推荐政策" style="width: 20px" >
+                                </div>
+                                <div class="col-8">
+                                    <span ><strong>推荐必读政策</strong></span>
+                                </div>
+                                <div class="col-2">
+                                    <button style="outline: none;border: none;background: none">
+                                        <img src="{% static 'img/更多.png' %}" alt="更多" style="right: 0;width: 20px">
+                                    </button>
+                                </div>
+                                <div id="must">
+                                    <div class="card-body">
+                                            <div class="row">
+                                            <div class="col-2">
+                                            </div>
+                                    <div class="col-8">
+                                        <p>
+                                           <a href="http://127.0.0.1:8000/index/详细内容.html?policy=4部门关于做好新型冠状病毒感染肺炎疫情防控期间稳定劳动关系支持企业复工复产的实施意见" style="color: black; text-decoration: none">
+                                              <img src="{% static 'img/数字1.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;
+                                             4部门关于做好新型冠状病毒感染肺炎疫情防控期间稳定劳动关系支持企业复工复产的实施意见
+                                           </a>
+                                      </p>
+                                        <p>
+                                           <a href="http://127.0.0.1:8000/index/详细内容.html?policy=国家知识产权局办公室关于进一步提升企业知识产权管理体系贯标认证质量的通知" style="color: black; text-decoration: none">
+                                              <img src="{% static 'img/数字2.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;
+                                              国家知识产权局办公室关于进一步提升企业知识产权管理体系贯标认证质量的通知
+                                           </a>
+                                        </p>
+                                            <p>
+                                        <a href="http://127.0.0.1:8000/index/详细内容.html?policy=山西省人民政府办公厅关于扶持高校毕业生创业的意见" style="color: black; text-decoration: none">
+                                              <img src="{% static 'img/数字3.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;
+                                              山西省人民政府办公厅关于扶持高校毕业生创业的意见
+                                          </a>
+                                            </p>
+                                         </div>
+
+                                         </div>
+                                             </div>
+                                </div>
+
+                                </script>
+                                    {#setTimeout(function (){#}
+                                    {#    $('#must').empty();#}
+                                    {#    var a;#}
+                                    {#    $.ajax({#}
+                                    {#    type:'GET',#}
+                                    {#    url: 'must',#}
+                                    {#    dataType:'json',#}
+                                    {#    success:function (data){#}
+                                    {#        alert(data);#}
+
+                                    {#        a+='<div class="card-body">';#}
+                                    {#        a+='<div class="row">';#}
+                                    {#        a+= '<div class="col-2">'#}
+                                    {#        a+='</div>'#}
+                                    {#a+='<div class="col-8">'#}
+                                    {#    a+='<p>'#}
+                                    {#       a+= '<a href="https://www.baidu.com" style="color: black; text-decoration: none">'#}
+                                    {#          a+=  '<img src="{% static 'img/数字1.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;'#}
+                                    {#         a+=  data[3].title#}
+                                    {#      a+= ' </a>'#}
+                                    {#  a+= ' </p>'#}
+                                    {#    a+='<p>'#}
+                                    {#       a+= '<a href="https://www.baidu.com" style="color: black; text-decoration: none">'#}
+                                    {#          a+=  '<img src="{% static 'img/数字2.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;'#}
+                                    {#         a+=  data[1].title#}
+                                    {#      a+= ' </a>'#}
+                                    {#    a+='</p>'#}
+                                    {#        a+='<p>'#}
+                                    {#    a+= '<a href="https://www.baidu.com" style="color: black; text-decoration: none">'#}
+                                    {#          a+=  '<img src="{% static 'img/数字3.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;'#}
+                                    {#         a+=  data[2].title#}
+                                    {#      a+= ' </a>'#}
+                                    {#        a+='</p>'#}
+                                    {#     a+='</div>'#}
+                                    {##}
+                                    {#     a+='</div>'#}
+                                    {#        a+=' </div>'#}
+                                {#           $("#must").append(a);#}
+                                {#        },#}
+                                {#        error:function (data){#}
+                                {#            alert(data+"erroe");#}
+                                {#        }#}
+                                {#    })#}
+                                {#    },300)#}
+                                {#</script>#}
+
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+{#                </div>#}
+{#                <div style="margin-top: 30px">#}
+{#                    <div class="shadow">#}
+{#                    <div class="card">#}
+{#                        <div class="card-header" style="background: none">#}
+{#                            <div class="row">#}
+{#                                <div class="col-1" style="margin-left: 20px">#}
+{#                                    <img src="{% static 'img/推荐政策.png' %}" alt="推荐政策" style="width: 20px" >#}
+{#                                </div>#}
+{#                                <div class="col-8">#}
+{#                                    <span ><strong>推荐必读政策</strong></span>#}
+{#                                </div>#}
+{#                                <div class="col-2">#}
+{#                                    <button style="outline: none;border: none;background: none">#}
+{#                                        <img src="{% static 'img/更多.png' %}" alt="更多" style="right: 0;width: 20px">#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                            <div class="card-body">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-2">#}
+{#                                    </div>#}
+{#                                    <div class="col-8">#}
+{#                                        <p>#}
+{#                                            <a href="https://www.baidu.com" style="color: black; text-decoration: none">#}
+{#                                                <img src="{% static 'img/数字1.png' %}" style="width: 20px" alt="数字1">&nbsp;&nbsp;#}
+{#                                                各县（市、区）、开发区中小企业主管部门#}
+{#                                            </a>#}
+{#                                        </p>#}
+{#                                        <p>#}
+{#                                            <a href="#" style="color: black; text-decoration: none" >#}
+{#                                                <img src="{% static 'img/数字2.png' %}" alt="数字2" style="width: 20px">&nbsp;&nbsp;第二条政策</a>#}
+{#                                        </p>#}
+{#                                        <p><a href="#" style="color: black; text-decoration: none">#}
+{#                                            <img src="{% static 'img/数字3.png' %}" alt="数字3" style="width: 20px">&nbsp;&nbsp;第三条政策</a></p>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#            </div>#}
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

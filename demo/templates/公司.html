@@ -1,0 +1,390 @@
+{% extends 'muban.html' %}
+{%load static %}
+{% block index %}
+    <div class="row" style="margin-top: 100px">
+        <div class="col-3">
+            <div class="Organization" style="margin-top: 0;margin-left: 40px">
+                <div class="card" >
+                    <div class="card-header" style="background: #146c43;color: white">
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row" style="margin-left: 0">
+                            <div class='col-12'>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{% static 'img/公司介绍.jpg' %}" alt="头像" style="width: 200px;margin-left: 10px" >
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="card-text" style="margin-left: 10px">
+                                                   <br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" style="margin-left: 0">
+                            <div class='col-12'>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{% static 'img/公司员工.jpg' %}" alt="头像" style="width: 200px;margin-left: 10px" >
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="card-text" style="margin-left: 10px">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" style="margin-left: 0">
+                            <div class='col-12'>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{% static 'img/扶持企业.jfif' %}" alt="头像" style="width: 200px;margin-left: 10px" >
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="card-text" style="margin-left: 10px">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="card-body">#}
+{#                        <div class="row" style="margin-left: 0">#}
+{#                            <div class='col-12'>#}
+{#                                <div class="card">#}
+{#                                    <div class="card-body">#}
+{#                                        <div class="row">#}
+{#                                            <div class="col-3">#}
+{#                                                <img src="{% static 'img/头像-01.png' %}" alt="头像" style="width: 50px;margin-left: 20px" >#}
+{#                                            </div>#}
+{#                                            <div class="col-9">#}
+{#                                                <div class="card-text" style="margin-left: 10px">#}
+{#                                                    <br>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+            <div class="Organization" style="margin-top: 0;margin-left: 40px">
+                <div class="card" style="margin-top: 30px">
+                    <div class="card-header" style="background: #146c43;color: white">
+
+                    </div>
+                    <div class="card-body" >
+                        <img src="{% static 'img/合作双赢.jfif' %}" alt="年报" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-7" id="feng">
+
+        </div>
+    <div class="col-2">
+        <div class="card">
+            <div class="card-body" >
+                <p align="center">
+{#                    <img src="{% static 'img/客服.png' %}" alt="客服" width="">#}
+{#                </p>#}
+{#                <p align="center">想了解更多信息<br>请联系我们</p>#}
+{#                <p align="center">#}
+{#                    <button type="button" class="btn btn-success">联系我们</button>#}
+{#                </p>#}
+
+            </div>
+            <div class="card-body" >
+                <p align="center">
+                    <img src="{% static 'img/联系.jfif' %}" alt="可视化图" width="200px"height="200px">
+                </p>
+                <p align="center">查看联系图谱<br>请点击下方</p>
+                <p align="center">
+                    <a class="btn btn-primary" href="graphesss.html" role="button">联系图谱</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+    function fuzhia(data){
+        a+='<div class="card w-100">';
+                a+='<div class="card-header" style="background: #0d6efd;color: white" >';
+                a+='基本信息';
+                a+='</div>';
+                a+='<div class="card-body">';
+                a+='<div class="row">';
+                a+='<div class="col-2">';
+                a+='<img class="card-img-top" style="margin-top: 30px; margin-left: 10px" src="{% static 'img/公司头像.jfif' %}" alt="文件">';
+                a+='<p style="margin-left: 30px"></p>';
+                a+='</div>';
+                a+='<div class="col-10">';
+                    a+='<h3>'+data.name+'</h3>';
+                            a+='<div class="card w-100" style="margin-top: 10px">';
+                                a+='<div class="card-body" style="background: rgba(71,197,255,0.05) ">';
+                                    a+='<div class="row">';
+                                        a+='<div class="col-12" style="margin-left: 20px">';
+                                            a+='<div class="row" >';
+                                                a+='<div class=col-6 >';
+                                                    a+='<table border="0" cellpadding="10" style="margin-left: 20px">';
+                                                a+='<tr>';
+                                                    a+='<td>法人:'+data.legal_person+'</td>';
+                                                a+='</tr>';
+                                                a+='<tr>';
+                                                    a+='<td>邮箱：'+data.email+'</td>';
+                                                a+='</tr>';
+                                                a+='<tr>';
+                                                    a+='<td>行业类型:'+data.industry+'</td>';
+                                                a+='</tr>';
+                                            a+='</table>';
+                                                a+='</div>';
+                                                a+='<div class="col-6" >';
+                                                    a+='<table border="0" cellpadding="10">';
+                                                a+='<tr>';
+                                                    a+='<td>电话：'+data.phone+'</td>';
+                                                a+='</tr>';
+                                                a+='<tr>';
+                                                    a+='<td>注册时间：'+data.regis_time+'</td>';
+                                                a+='</tr>';
+                                                a+='<tr>';
+                                                    a+='<td>地址：'+data.address+'</td>';
+                                                a+='</tr>';
+                                            a+='</table>';
+                                                a+='</div>';
+                                            a+='</div>';
+                                        a+='</div>';
+                                    a+='<div class="row" style="margin-right: 10px" >';
+                                        a+='<div class="col-12" style="margin-left: 43px">';
+                                            a+='<table border="0" cellpadding="5">';
+                                                a+='<tr>';
+                                                    a+='<td>简介：'+data.scope+'</td>';
+                                                a+='</tr>';
+                                            a+='</table>';
+                                        a+='</div>';
+                                    a+='</div>';
+                                a+='</div>';
+                            a+='</div>';
+                        a+='</div>';
+                    a+='</div>';
+                a+='</div>';
+            a+='</div>';
+        a+='</div>';
+            a+='<div class="policy-map" style="margin-top: 30px">';
+                a+='<div class="card" style="height: 500px">';
+                    a+='<div class="card-header" style="background: navy;color: white">公司热度统计</div>';
+                            a+='<div id="jb" style="height: 100% ;weight:30%"></div>';
+                a+='</div>';
+
+            a+='</div>';
+        $("#feng").append(a);
+    }
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/dist/echarts.min.js"></script>
+    <script>
+     setTimeout(function (){
+        var dom = document.getElementById("jb");
+  var myChart = echarts.init(dom);
+  var app = {};
+
+  var option;
+
+
+
+  option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        crossStyle: {
+          color: '#999'
+        }
+      }
+    },
+    toolbox: {
+      feature: {
+        dataView: { show: true, readOnly: false },
+        magicType: { show: true, type: ['line', 'bar'] },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    legend: {
+      data: ['查询次数', '曝光量', '热度']
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        axisPointer: {
+          type: 'shadow'
+        }
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: '次数',
+        min: 0,
+        max: 150,
+        interval: 15,
+        axisLabel: {
+          formatter: '{value} '
+        }
+      },
+      {
+        type: 'value',
+        name: '百分比',
+        min: 0,
+        max: 100,
+        interval: 10,
+        axisLabel: {
+          formatter: '{value} °C'
+        }
+      }
+    ],
+    series: [
+      {
+        name: '查询次数',
+        type: 'bar',
+        tooltip: {
+          valueFormatter: function (value) {
+            return value + ' ml';
+          }
+        },
+        data: [
+          2, 4, 7, 2, 5, 7, 13, 16, 32, 20, 6, 3
+        ]
+      },
+      {
+        name: '曝光量',
+        type: 'bar',
+        tooltip: {
+          valueFormatter: function (value) {
+            return value + ' 次';
+          }
+        },
+        data: [
+          20, 50, 90, 60, 70, 66, 74, 92, 63, 107, 61, 89
+        ]
+      },
+      {
+        name: '热度',
+        type: 'line',
+        yAxisIndex: 1,
+        tooltip: {
+          valueFormatter: function (value) {
+            return value + ' %';
+          }
+        },
+        data: [2.0*15, 2.2*15, 3.3*15, 4.5*15, 6.3*5, 10.2*3, 20.3*3, 23.4*3, 23.0*3, 16.5*3, 12.0*3, 6.2*3]
+      }
+    ]
+  };
+
+  if (option && typeof option === 'object') {
+    myChart.setOption(option);
+  }
+               },500)
+    </script>
+    <script>
+        var url = decodeURI(location.search);
+
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+             var str = url.substr(1);
+             strs = str.split("&");
+         for (var i = 0; i < strs.length; i++) {
+             theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+         }
+     }
+        var a = '';
+        $.ajax({
+            type:'GET',
+            url: 'gongsi',
+            dataType:'json',
+            data:{
+                company:theRequest.name
+            },
+            success:function (data){
+                $('#feng').empty();
+                fuzhia(data)
+
+            },
+            error:function (data){
+                alert("err"+data);
+            }
+        })
+        setTimeout(function (){
+              $.ajax({
+            type:'GET',
+            url: 'recom',
+            dataType:'json',
+            data:{
+                name:theRequest.name
+            },
+            success:function (data){
+                var a='';
+                a+='<div class="referral-policy" style="margin-top: 30px">';
+                 a+='<div class="card">';
+                     a+='<div class="card-header" style="background: #0dcaf0;color: white">';
+                         a+='政策推荐';
+                     a+='</div>';
+                     for(var i =0; i<10; i++){
+                         a+='<div class="card-body">';
+                         a+='<div class="card-text">';
+                             a+='<div class="card">';
+                                 a+='<div class="card-body" style="border: none">';
+                                     a+='<div class="card-title" style="margin-left: 20px">';
+                                         a+='<a class="card-title" href="详细内容.html?policy='+data[i].title+'" style="font-size: x-large; color: black;text-decoration:none"><strong>'+data[i].title+'<br/></strong></a>';
+                                         a+='<br/><span>'+data[i].prefecture_city+'</span>';
+                                     a+='</div>';
+                                     a+='<div class="card-body">';
+                                         a+='<span>'+data[i].abstract+'</span>';
+                                    a+=' </div>';
+                                 a+='</div>';
+                             a+='</div>';
+                         a+='</div>';
+                    a+=' </div>';
+                     }
+                 a+='</div>'
+            a+='</div>'
+                $("#feng").append(a);
+            },
+            error:function (data){
+                 console.log("errr")
+            }
+        })
+        {#alert("time")#}
+        },300)
+
+    </script>
+
+{% endblock %}

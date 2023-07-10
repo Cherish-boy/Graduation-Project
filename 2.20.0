@@ -1,0 +1,5 @@
+Requirement already satisfied: requests in d:\anaconda\lib\site-packages (2.28.1)
+Requirement already satisfied: charset-normalizer<3,>=2 in d:\anaconda\lib\site-packages (from requests) (2.1.1)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in d:\anaconda\lib\site-packages (from requests) (1.25.11)
+Requirement already satisfied: idna<4,>=2.5 in d:\anaconda\lib\site-packages (from requests) (2.10)
+Requirement already satisfied: certifi>=2017.4.17 in d:\anaconda\lib\site-packages (from requests) (2020.6.20)
